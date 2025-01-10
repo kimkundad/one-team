@@ -209,7 +209,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="pricing.css" rel="stylesheet">
+    {{-- <link href="{{ url('/assets/css/pricing.css') }}" rel="stylesheet"> --}}
 </head>
 
 <body>
