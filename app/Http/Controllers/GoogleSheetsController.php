@@ -26,7 +26,7 @@ class GoogleSheetsController extends Controller
 
     public function search(Request $request)
     {
-        $spreadsheetId = '1hOxfhT5sBL8m-GvKsCK98Fa5mrb-bhTkuFSO2Heow7g'; // ใส่ Google Sheet ID ของคุณ
+        $spreadsheetId = '1hOxfhT5sBL8m-GvKsCK98Fa5mrb-bhTkuFSO2Heow7g'; // Google Sheet ID
         $range = 'List!A2:J'; // ดึงคอลัมน์ A ถึง J
 
         // ดึงข้อมูลทั้งหมดจาก Google Sheets
@@ -37,10 +37,12 @@ class GoogleSheetsController extends Controller
 
         // ตรวจสอบว่ามีคำค้นหาหรือไม่
         if ($searchTerm) {
-            // กรองข้อมูลตามคำค้นหาในทุกสถานะของ `$row[8]`
+            // กรองข้อมูลตามคำค้นหาใน Employee ID หรือ ชื่อ-นามสกุล
             $filteredData = array_filter($data, function ($row) use ($searchTerm) {
+                $employeeId = strtolower($row[3] ?? ''); // Employee ID จากคอลัมน์ D
                 $fullName = strtolower($row[4] ?? '') . ' ' . strtolower($row[5] ?? ''); // รวมชื่อและนามสกุล
-                return strpos($fullName, $searchTerm) !== false; // ค้นหาในชื่อและนามสกุล
+
+                return strpos($employeeId, $searchTerm) !== false || strpos($fullName, $searchTerm) !== false;
             });
         } else {
             // ถ้าไม่มีคำค้นหา ให้แสดงเฉพาะ `$row[8] == '1'` (ข้อมูลที่ลงทะเบียนแล้ว)
@@ -58,9 +60,11 @@ class GoogleSheetsController extends Controller
         return view('welcome', [
             'results' => $filteredData, // ผลลัพธ์ที่กรองแล้ว
             'registeredCount' => count($allRegistered), // จำนวนผู้ลงทะเบียนทั้งหมด
-            'searchTerm' => $searchTerm
+            'searchTerm' => $searchTerm // ส่งคำค้นหาไปยัง View (ถ้าต้องการแสดง)
         ]);
     }
+
+
 
 
     public function checkin(Request $request)
@@ -74,6 +78,13 @@ class GoogleSheetsController extends Controller
             $spreadsheetId,
             "I$rowIndex", // อัปเดตคอลัมน์ I ของแถวที่กำหนด
             '1'
+        );
+
+        $currentDateTime = now()->format('Y-m-d H:i:s'); // รูปแบบวันที่และเวลา
+        $this->googleSheets->updateCell(
+            $spreadsheetId,
+            "J$rowIndex", // คอลัมน์ J ของแถวที่กำหนด
+            $currentDateTime
         );
 
         // ดึงข้อมูลใหม่ทั้งหมดเพื่ออัปเดตจำนวนผู้ลงทะเบียน

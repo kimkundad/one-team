@@ -312,7 +312,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="search-2">
-                                <input type="text" name="name" value="{{ $searchTerm }}" class="form-control" placeholder="ชื่อ - นามสกุล">
+                                <input type="text" name="name" value="{{ $searchTerm }}" class="form-control" placeholder="ชื่อ - นามสกุล, id พนักงาน">
                                 <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                         </div>
