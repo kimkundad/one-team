@@ -16,7 +16,7 @@ class GoogleSheetsController extends Controller
 
     public function readSheet()
     {
-        $spreadsheetId = '1hOxfhT5sBL8m-GvKsCK98Fa5mrb-bhTkuFSO2Heow7g';
+        $spreadsheetId = '1Xqm6MHCxhNT0oLKVldAB2ZeBji4Lv0GK9MyxWSfNogM';
         $range = 'List'; // ช่วงข้อมูลที่ต้องการอ่าน
 
         $data = $this->googleSheets->getSheetData($spreadsheetId, $range);
@@ -26,11 +26,15 @@ class GoogleSheetsController extends Controller
 
     public function search(Request $request)
     {
-        $spreadsheetId = '1hOxfhT5sBL8m-GvKsCK98Fa5mrb-bhTkuFSO2Heow7g'; // Google Sheet ID
+        $spreadsheetId = '1Xqm6MHCxhNT0oLKVldAB2ZeBji4Lv0GK9MyxWSfNogM'; // Google Sheet ID
         $range = 'List!A2:J'; // ดึงคอลัมน์ A ถึง J
 
         // ดึงข้อมูลทั้งหมดจาก Google Sheets
         $data = $this->googleSheets->readSheet($spreadsheetId, $range);
+
+        if (!is_array($data)) {
+            $data = [];
+        }
 
         // ตัวแปรค้นหา
         $searchTerm = strtolower($request->get('name')); // รับคำค้นหาจาก input
@@ -69,7 +73,7 @@ class GoogleSheetsController extends Controller
 
     public function checkin(Request $request)
 {
-    $spreadsheetId = '1hOxfhT5sBL8m-GvKsCK98Fa5mrb-bhTkuFSO2Heow7g'; // Google Sheet ID
+    $spreadsheetId = '1Xqm6MHCxhNT0oLKVldAB2ZeBji4Lv0GK9MyxWSfNogM'; // Google Sheet ID
     $rowIndex = $request->input('rowIndex'); // รับ Row Index จาก AJAX
 
     try {
@@ -108,7 +112,7 @@ class GoogleSheetsController extends Controller
 
     public function writeSheet(Request $request)
     {
-        $spreadsheetId = '1hOxfhT5sBL8m-GvKsCK98Fa5mrb-bhTkuFSO2Heow7g';
+        $spreadsheetId = '1Xqm6MHCxhNT0oLKVldAB2ZeBji4Lv0GK9MyxWSfNogM';
         $range = 'Sheet1'; // ช่วงข้อมูลที่ต้องการเขียน
 
         $values = [
