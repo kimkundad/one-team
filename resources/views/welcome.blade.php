@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="3 กลยุทธ์พิชิตชัยชนะ (Must Win Battles) ที่ทำให้คนทรู ทำงานเป็นอันหนึ่งอันเดียวกัน . ขับเคลื่อนด้วยเป้าหมาย ONE Team, ONE Future รวมเป็นหนึ่ง เพื่ออนาคตเดียวกัน เพื่อมุ่งสู่การเป็นผู้นำ Telco-Tech อย่างยั่งยืน">
+        content="hrap movie night">
     <meta name="author" content="True Blog">
-    <title>ONE Team, ONE Future รวมเป็นหนึ่ง เพื่ออนาคตเดียวกัน เพื่อมุ่งสู่การเป็นผู้นำ Telco-Tech อย่างยั่งยืน</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('assets/img/icon-32x32.jpg') }}" />
+    <title>hrap movie night</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('assets/img/favicon-light-32x32.png') }}" />
 
 
 
@@ -294,7 +294,7 @@
         <header>
             <div class="d-flex justify-content-center flex-md-row align-items-center mb-4 border-bottom">
                 <a href="{{ url('/') }}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-                    <img src="{{ url('assets/img/logo.png') }}" class="img-fluid" style="height: 80px" />
+                    <img src="{{ url('assets/img/Asset 2@2x-8.png') }}" class="img-fluid" style="height: 95px" />
                 </a>
             </div>
         </header>
